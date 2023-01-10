@@ -1,13 +1,13 @@
-package com.example.opendotaclient.ui.search;
+package com.example.opendotaclient.ui.model;
 
 public class User {
 
     private int avatar;
     private String name;
-    private String id;
+    private Long id;
 
 
-    public User(int avatar, String name, String id) {
+    public User(int avatar, String name, Long id) {
         this.avatar = avatar;
         this.name = name;
         this.id = id;
@@ -33,12 +33,12 @@ public class User {
         this.name = name;
     }
 
-    public String getId() {
+    public Long getId() {
 
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
 
         this.id = id;
     }

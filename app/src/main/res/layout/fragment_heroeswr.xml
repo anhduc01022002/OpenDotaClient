@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ui.stats.HeroesWRFragment">
+    tools:context=".ui.heroes.HeroesWRFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edge"
             android:orientation="vertical"
             android:paddingVertical="20dp">
 
@@ -83,108 +84,18 @@
 
             </LinearLayout>
             <!--Heroes Win rate-->
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recent_heroes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Lich"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
+                </androidx.recyclerview.widget.RecyclerView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="296"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="52,40%"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1 day ago"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Axe"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="202"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="45,87%"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1 week ago"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
-
-            </LinearLayout>
+            </ScrollView>
 
 
         </LinearLayout>

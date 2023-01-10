@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
+    <string name="home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -18,7 +19,45 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="heroes">Heroes</string>
+    <string name="wins">Wins</string>
+    <string name="logout">Logout</string>
+    <string name="losses">Losses</string>
+    <string name="win_rate">Win rate</string>
+    <string name="recent_matches">Recent matches</string>
+    <string name="matches">Matches</string>
+    <string name="overview">Overview</string>
+    <string name="peers">Peers</string>
+    <string name="hero">Hero</string>
+    <string name="mode">Mode</string>
+    <string name="ended">Ended</string>
+    <string name="length">Length</string>
+    <string name="kda">K/D/A</string>
+    <string name="player">Player</string>
+    <string name="last_played">Last played</string>
+    <string name="benchmark">Benchmark</string>
+    <string name="match_id">Match ID: </string>
+    <string name="region">Region: </string>
+    <string name="skill">Skill: </string>
+    <string name="gpm">GPM</string>
+    <string name="xpm">XPM</string>
+    <string name="kpm">KPM</string>
+    <string name="lhpm">LHPM</string>
+    <string name="hdpm">HDPM</string>
+    <string name="hhpm">HHPM</string>
+    <string name="td">TD</string>
+    <string name="spm">SPM</string>
+    <string name="professional">Professional</string>
+    <string name="turbo">turbo</string>
+    <string name="themes">Themes</string>
+    <string name="languages">Languages</string>
+
+    <string name="open_drawer_navigation">Open drawer navigation</string>
+    <string name="close_drawer_navigation">Close drawer navigation</string>
+    <!-- TODO: Remove or change this placeholder text -->
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_match_details">MatchDetailsActivity</string>
+    <string name="todo">TODO</string>
 </resources>

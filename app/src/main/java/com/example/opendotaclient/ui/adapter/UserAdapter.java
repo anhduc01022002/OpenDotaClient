@@ -1,5 +1,6 @@
 package com.example.opendotaclient.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.opendotaclient.R;
-import com.example.opendotaclient.ui.search.User;
+import com.example.opendotaclient.ui.SelectListener;
+import com.example.opendotaclient.ui.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,54 +23,33 @@ import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> implements Filterable {
 
+    private Context context;
     private List<User> mListUsers;
-    private List<User> mListUsersOld;
+    private List<User> mListUsersAll;
+    private SelectListener listener;
 
-    public UserAdapter(List<User> mListUsers) {
+    public UserAdapter(List<User> mListUsers, Context context,SelectListener listener ) {
 
+        this.context = context;
         this.mListUsers = mListUsers;
-        this.mListUsersOld = mListUsers;
+        this.mListUsersAll = mListUsers;
+        this.listener = listener;
+
     }
 
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_result,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.search_result,parent,false);
         return new UserViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        User user = mListUsers.get(position);
-        if(user == null ){
-            return;
-        }
+        holder.useravatar.setImageResource(mListUsers.get(position).getAvatar());
+        holder.username.setText(mListUsers.get(position).getName());
+        holder.userid.setText(mListUsers.get(position).getId().toString());
 
-        holder.useravatar.setImageResource(user.getAvatar());
-        holder.username.setText(user.getName());
-        holder.userid.setText(user.getId());
-    }
-
-    @Override
-    public int getItemCount() {
-        if (mListUsers != null) {
-            return mListUsers.size();
-        }
-        return 0;
-    }
-
-    public class UserViewHolder extends RecyclerView.ViewHolder{
-
-        private ImageView useravatar;
-        private TextView username;
-        private TextView userid;
-
-        public UserViewHolder(@NonNull View itemView) {
-            super(itemView);
-            useravatar = itemView.findViewById(R.id.user_avatar);
-            username = itemView.findViewById(R.id.user_name);
-            userid = itemView.findViewById(R.id.user_id);
-        }
     }
 
     @Override
@@ -77,10 +59,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             protected FilterResults performFiltering(CharSequence constraint) {
                 String strSearch = constraint.toString();
                 if(strSearch.isEmpty()){
-                    mListUsers = mListUsersOld;
+                    mListUsers = mListUsersAll;
                 }else{
                     List<User> list = new ArrayList<>();
-                    for (User user : mListUsersOld){
+                    for (User user : mListUsersAll){
                         if(user.getName().toLowerCase().contains(strSearch.toLowerCase())) {
                             list.add(user);
                         }
@@ -101,5 +83,30 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 notifyDataSetChanged();
             }
         } ;
+    }
+
+    @Override
+    public int getItemCount() {
+        if (mListUsers != null) {
+            return mListUsers.size();
+        }
+        return 0;
+    }
+
+    public class UserViewHolder extends RecyclerView.ViewHolder{
+
+        public CardView cardView;
+        private ImageView useravatar;
+        private TextView username;
+        private TextView userid;
+
+
+        public UserViewHolder(@NonNull View itemView) {
+            super(itemView);
+            useravatar = itemView.findViewById(R.id.user_avatar);
+            username = itemView.findViewById(R.id.user_name);
+            userid = itemView.findViewById(R.id.user_id);
+            cardView = itemView.findViewById(R.id.main_container);
+        }
     }
 }

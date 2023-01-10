@@ -4,34 +4,41 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager.widget.ViewPager;
 
-import com.example.opendotaclient.databinding.FragmentHomeBinding;
+import com.example.opendotaclient.R;
+import com.example.opendotaclient.ui.heroes.HeroesWRFragment;
+import com.example.opendotaclient.ui.stats.MatchesFragment;
+import com.example.opendotaclient.ui.stats.OverviewFragment;
+import com.example.opendotaclient.ui.stats.PeersFragment;
+import com.example.opendotaclient.ui.stats.ViewPagerAdapter;
 
 public class HomeFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        // Defines the xml file for the fragment
+        View view = inflater.inflate(R.layout.activity_home, parent, false);
+        AddViewPager(view);
+        return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private void AddViewPager(View view) {
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        // setting up the adapter
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+
+        // add the fragments
+        viewPagerAdapter.add(new OverviewFragment(), "Overview");
+        viewPagerAdapter.add(new MatchesFragment(), "Matches");
+        viewPagerAdapter.add(new HeroesWRFragment(), "Heroes");
+        viewPagerAdapter.add(new PeersFragment(), "Peers");
+
+        // Set the adapter
+        viewPager.setAdapter(viewPagerAdapter);
     }
 }
