@@ -46,7 +46,7 @@ public class OverviewFragment extends Fragment {
     }
 
     private void fetchData() {
-        Long player_id = getActivity().getIntent().getLongExtra("player_id", 446737104);//
+        Long player_id = getActivity().getIntent().getLongExtra("player_id", 392565237);//
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = String.format("https://opendota.com/api/players/%d", player_id);
         String win_lose_url = String.format("https://opendota.com/api/players/%d/wl", player_id);

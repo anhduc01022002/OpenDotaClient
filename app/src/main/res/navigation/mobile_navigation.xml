@@ -13,16 +13,16 @@
     <fragment
         android:id="@+id/nav_search"
         android:name="com.example.opendotaclient.ui.search.SearchFragment"
-        android:label="fragment_search"
+        android:label="Search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/nav_heroes"
         android:name="com.example.opendotaclient.ui.heroes.HeroesFragment"
-        android:label="fragment_heroes"
+        android:label="Heroes"
         tools:layout="@layout/fragment_heroes" />
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.opendotaclient.ui.settings.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

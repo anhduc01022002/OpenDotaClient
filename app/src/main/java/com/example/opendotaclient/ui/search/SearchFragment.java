@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -34,7 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchFragment extends Fragment implements SelectListener {
+public class SearchFragment extends Fragment{
 
     private RecyclerView rcvUsers;
     private UserAdapter userAdapter;
@@ -44,7 +43,7 @@ public class SearchFragment extends Fragment implements SelectListener {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
-        String player_id = "446737104";
+        String player_id = "392565237";
         List<User> peerModelArrayList = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = String.format("https://opendota.com/api/players/%s/peers", player_id);
@@ -65,7 +64,14 @@ public class SearchFragment extends Fragment implements SelectListener {
                                 rcvUsers = rootView.findViewById(R.id.rcv_users);
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
                                 rcvUsers.setLayoutManager(linearLayoutManager);
-                                userAdapter = new UserAdapter(peerModelArrayList, getActivity().getBaseContext(), SearchFragment.this::onItemClicked);
+                                userAdapter = new UserAdapter(peerModelArrayList, getActivity().getBaseContext(), new SelectListener() {
+                                    @Override
+                                    public void onItemClicked(long id) {
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        intent.putExtra("player_id", id);
+                                        startActivity(intent);
+                                    }
+                                });
                                 rcvUsers.setAdapter(userAdapter);
 
                             }
@@ -100,11 +106,5 @@ public class SearchFragment extends Fragment implements SelectListener {
         });
 
         return rootView;
-    }
-    @Override
-    public void onItemClicked(AdapterView<?> parent, View view, int position, long id){
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.putExtra("player_id", rcvUsers.getId());
-        startActivity(intent);
     }
 }

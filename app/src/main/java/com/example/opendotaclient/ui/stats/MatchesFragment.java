@@ -47,7 +47,7 @@ public class MatchesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
 
-        Long player_id = getActivity().getIntent().getLongExtra("player_id", 446737104);;
+        Long player_id = getActivity().getIntent().getLongExtra("player_id", 375507918);;
         matchList = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = String.format("https://opendota.com/api/players/%d/matches", player_id);

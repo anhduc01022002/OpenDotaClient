@@ -26,14 +26,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private Context context;
     private List<User> mListUsers;
     private List<User> mListUsersAll;
-    private SelectListener listener;
+    private SelectListener mSelectListener;
 
-    public UserAdapter(List<User> mListUsers, Context context,SelectListener listener ) {
+    public UserAdapter(List<User> mListUsers, Context context, SelectListener listener ) {
 
         this.context = context;
         this.mListUsers = mListUsers;
         this.mListUsersAll = mListUsers;
-        this.listener = listener;
+        this.mSelectListener = listener;
 
     }
 
@@ -41,6 +41,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.search_result,parent,false);
+
+        final UserViewHolder viewHolder = new UserViewHolder(view);
+
+
+
         return new UserViewHolder(view);
     }
 
@@ -49,7 +54,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.useravatar.setImageResource(mListUsers.get(position).getAvatar());
         holder.username.setText(mListUsers.get(position).getName());
         holder.userid.setText(mListUsers.get(position).getId().toString());
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSelectListener.onItemClicked(mListUsers.get(position).getId());
+            }
+        });
     }
 
     @Override
